@@ -1,21 +1,27 @@
-enum Role {
-  ADMIN,
-  READ_ONLY,
-  AUTHOR,
+type Combinable = number | string;
+
+function combine(
+  input1: Combinable,
+  input2: Combinable,
+  resultConversion: 'as-number' | 'as-text'
+) {
+  let result;
+  if (
+    (typeof input1 === 'number' && typeof input2 === 'number') ||
+    resultConversion === 'as-number'
+  ) {
+    result = +input1 + +input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 }
 
-const person: {
-  name: string;
-  age: number;
-  hobbies: string[];
-  role: Role;
-} = {
-  name: 'Michael',
-  age: 32,
-  hobbies: ['Sports', 'Cooking'],
-  role: Role.ADMIN,
-};
+const combinedAges = combine(30, 26, 'as-number');
+console.log(combinedAges);
 
-let favoriteActivities: string[];
+const combinedStringAges = combine('30', '26', 'as-number');
+console.log(combinedStringAges);
 
-console.log(person.name);
+const combinedNames = combine('Max', 'Anna', 'as-text');
+console.log(combinedNames);
