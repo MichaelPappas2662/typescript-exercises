@@ -13,6 +13,7 @@ function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
 let combineValues: (a: number, b: number) => number;
 
 printResult(add(5, 12));
+
 addAndHandle(10, 20, (result): void => {
   console.log(result);
 });
